@@ -21,6 +21,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Overriding create methode."""
         employee = super(EmployeeSerializer, self).create(validated_data)
+        employee.is_active = True
         if 'password' in validated_data.keys():
             employee.set_password(validated_data['password'])
             employee.save()
